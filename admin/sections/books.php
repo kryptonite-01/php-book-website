@@ -1,5 +1,6 @@
 <?php include('../template/header.php'); ?>
 <?php 
+session_start();
 //form data
 $id=isset($_POST['id'])?$_POST['id']:"";
 $name=isset($_POST['name'])?$_POST['name']:"";
@@ -24,6 +25,9 @@ switch($action){
 
         $query->bindParam(':image',$image_name);
         $query->execute();
+
+        $_SESSION['message'] = 'Book successfully saved';
+  	    $_SESSION['message_type'] = 'success';
 
         header('location:books.php');
         break;
@@ -62,6 +66,10 @@ switch($action){
             $query->bindParam(':image',$image_name);
             $query->execute(); 
         }
+
+        $_SESSION['message'] = 'Book successfully edited';
+  	    $_SESSION['message_type'] = 'warning';
+
         header('location:books.php');
         break;
 
@@ -88,6 +96,9 @@ switch($action){
         $query=$conn->prepare($sql);
         $query->bindParam(':id',$id);
         $query->execute();
+
+        $_SESSION['message'] = 'Book successfully deleted';
+  	    $_SESSION['message_type'] = 'danger';
 
         header('location:books.php');
         break;
@@ -147,6 +158,14 @@ $book_list=$query->fetchAll(PDO::FETCH_ASSOC);
             </form>       
         </div>
 </div>
+<br/>
+<?php if (isset($_SESSION['message'])) { ?>
+				<div class="alert alert-<?php echo $_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
+					<?php echo $_SESSION['message']; ?>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+<?php unset($_SESSION['message']);
+	  unset($_SESSION['message_type']); } ?>
 </div>
 
 <div class="col-md-7">
@@ -171,20 +190,15 @@ $book_list=$query->fetchAll(PDO::FETCH_ASSOC);
                     <td>
                         <form method="POST">
                             <input type="hidden" name="id" id="id" value="<?php echo $book['id']?>">
-                            <input type="submit" name="action" value="select" class="btn btn-secondary">
-                            <input type="submit" name="action" value="delete" class="btn btn-danger">
-                            <!-- <button type="submit" class="btn btn-danger px-3"><i class="bi bi-pencil-square"></i></button> -->
+                            <button type="submit" name="action" value="select" class="btn btn-secondary px-3"><i class="bi bi-pencil-square"></i></button>
+                            <button type="submit" name="action" value="delete" class="btn btn-danger px-3"><i class="bi bi-trash"></i></button>
                         </form>
-                        <!-- <a class="btn btn-secondary" href=""><i class="bi bi-pencil-square"></i></a> -->
-                        <!-- <a class="btn btn-danger" href=""><i class="bi bi-trash"></i></a> -->
                     </td>
                 </tr>
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-    
-    
+    </div> 
 </div>
 
 <?php include('../template/footer.php'); ?>
