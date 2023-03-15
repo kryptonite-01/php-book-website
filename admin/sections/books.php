@@ -66,7 +66,7 @@ switch($action){
             $query->execute(); 
         }
 
-        $_SESSION['message'] = 'Book successfully edited';
+        $_SESSION['message'] = 'Book successfully edited.';
   	    $_SESSION['message_type'] = 'warning';
 
         header('location:books.php');
@@ -96,7 +96,7 @@ switch($action){
         $query->bindParam(':id',$id);
         $query->execute();
 
-        $_SESSION['message'] = 'Book successfully deleted';
+        $_SESSION['message'] = 'Book successfully deleted.';
   	    $_SESSION['message_type'] = 'danger';
 
         header('location:books.php');
@@ -128,7 +128,7 @@ $book_list=$query->fetchAll(PDO::FETCH_ASSOC);
             <h4 class="card-title">Register book</h4>
         </div>
         <div class="card-body">
-            <form method="POST" enctype="multipart/form-data" >
+            <form method="POST" enctype="multipart/form-data">
                 <div class = "form-group">
                     <label for="id">ID</label>
                     <input type="text" required readonly class="form-control" id="id" name="id" placeholder="Enter ID Book" value="<?php echo $id;?>">
@@ -158,13 +158,12 @@ $book_list=$query->fetchAll(PDO::FETCH_ASSOC);
         </div>
 </div>
 <br/>
-<?php if (isset($_SESSION['message'])) { ?>
-				<div class="alert alert-<?php echo $_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
-					<?php echo $_SESSION['message']; ?>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-<?php unset($_SESSION['message']);
-	  unset($_SESSION['message_type']); } ?>
+<?php if(isset($_SESSION['message'])) { ?>
+    <div class="alert alert-<?php echo $_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
+        <?php echo $_SESSION['message']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php } ?>
 </div>
 
 <div class="col-md-7">
