@@ -1,7 +1,13 @@
+<?php 
+if($_POST){
+    header('location:home.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Title</title>
+  <title>Login</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,7 +15,6 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <title>Admin website</title>
 </head>
 
 <body>
@@ -17,21 +22,24 @@
     <div class="row justify-content-center align-items-center g-2">
         <div class="col-md-4"></div>
         <div class="col-md-4"><br><br>
-            <form action="index.php" method="post">
-            <div class = "form-group">
-            <label for="user">User</label>
-            <input type="text" class="form-control" id="user" placeholder="Enter user">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Login</h4>
+                    <form method="post">
+                        <div class = "form-group">
+                            <label for="user">User</label>
+                            <input type="email" class="form-control" id="user" placeholder="Enter user">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success">Sign In</button>
+                    </form>
+                </div>
             </div>
-            <br>
-            <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Sign In</button>
-            </form>
-            
-            
         </div>
         <div class="col-md-4"></div>
     </div>
