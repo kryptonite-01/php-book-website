@@ -21,6 +21,10 @@
         <li class="nav-item">
           <a class="nav-link" href="about.php">About</a>
         </li>
+        <li class="nav-item">
+          <?php $url = "http://".$_SERVER['HTTP_HOST']."/php-projects/book-website";  ?>
+          <a class="nav-link" href="<?php echo $url; ?>/admin/index.php">Login</a>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-sm-2" type="search" placeholder="Search">

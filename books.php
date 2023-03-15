@@ -1,21 +1,26 @@
 <?php include('template/header.php');?>
+<?php 
+include('admin/config/db.php'); 
 
+//select all books
+$sql="SELECT * FROM books";
+$query=$conn->prepare($sql);
+$query->execute();
+$book_list=$query->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<?php foreach($book_list as $book){ ?>
 <div class="col-4">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title">Title</h3>
-        <p class="card-text">Text</p>
-      </div>
+  <div class="card">
+    <img src="./img/<?php echo $book['image']; ?>" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title"><?php echo $book['name']; ?></h5>
+      <a href="#" class="btn btn-primary">See more</a>
     </div>
   </div>
-
-  <div class="col-4">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title">Title</h3>
-        <p class="card-text">Text</p>
-      </div>
-    </div>
 </div>
+
+
+<?php } ?>
 
 <?php include('template/footer.php');?>

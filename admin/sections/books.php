@@ -1,6 +1,5 @@
 <?php include('../template/header.php'); ?>
 <?php 
-session_start();
 //form data
 $id=isset($_POST['id'])?$_POST['id']:"";
 $name=isset($_POST['name'])?$_POST['name']:"";
